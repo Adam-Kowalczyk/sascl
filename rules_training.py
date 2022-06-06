@@ -38,7 +38,11 @@ if __name__ == '__main__':
     raven_val_dataset = RAVENRulesDataset(DATA_PATH, 'val', 4)
     raven_test_dataset = RAVENRulesDataset(DATA_PATH, 'test', 4)
 
-    print(f"Datasets created.", flush=True)
+    print(f"Datasets created. Lengths: {len(raven_train_dataset)}, {len(raven_val_dataset)}, {len(raven_test_dataset)}", flush=True)
+    
+    if len(raven_train_dataset) == 0 or len(raven_val_dataset) == 0 or len(raven_test_dataset) == 0:
+        print("DataLoader is of size 0!", flush=True)
+        exit()
 
     train_loader = DataLoader(raven_train_dataset, batch_size=args.batch_size, num_workers=args.num_workers)
 
